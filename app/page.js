@@ -11,90 +11,90 @@ import Footer from "./constants/Footer";
 
 
 const products = [
-     {
-          id: 1,
+    {
+      id: 1,
 
-          name: "Foaming Cleanser",
+      name: "Foaming Cleanser",
 
-          subtitle: "For Normal to Oily Skin",
+      subtitle: "For Normal to Oily Skin",
 
-          description:
-               "A gentle foaming cleanser that removes excess oil while helping maintain the skin's natural protective barrier.",
+      description:
+            "A gentle foaming cleanser that removes excess oil while helping maintain the skin's natural protective barrier.",
 
-          price: "₦18,500",
+      price: "₦18,500",
 
-          tag: "BEST SELLER",
+      tag: "BEST SELLER",
 
-          image: "/products/foaming-cleanser.png",
+      image: "/products/foaming-cleanser.png",
 
-          // Green CeraVe product
-          background: "#DCEBDD",
+      // Green CeraVe product
+      background: "#DCEBDD",
 
-          accentLight: "#E7EFE2",
+      accentLight: "#E7EFE2",
 
-          circle: "#B8D7B9",
+      circle: "#B8D7B9",
 
-          accent: "#2E9E5B",
+      accent: "#2E9E5B",
 
-          text: "#19352A",
-     },
-     {
-          id: 2,
+      text: "#19352A",
+    },
+    {
+      id: 2,
 
-          name: "Renewing SA Cleanser",
+      name: "Renewing SA Cleanser",
 
-          subtitle: "For Normal Skin",
+      subtitle: "For Normal Skin",
 
-          description:
-               "A renewing cleanser formulated with salicylic acid to gently cleanse and exfoliate while helping smooth the skin.",
+      description:
+            "A renewing cleanser formulated with salicylic acid to gently cleanse and exfoliate while helping smooth the skin.",
 
-          price: "₦21,500",
+      price: "₦21,500",
 
-          tag: "NEW",
+      tag: "NEW",
 
-          image: "/products/renewing-cleanser.png",
+      image: "/products/renewing-cleanser.png",
 
-          // Blue SA product
-          background: "#E0EFF7",
+      // Blue SA product
+      background: "#E0EFF7",
 
-          accentLight: "#E4F3F0",
+      accentLight: "#E4F3F0",
 
-          circle: "#B9DCEC",
+      circle: "#B9DCEC",
 
-          accent: "#1689C2",
+      accent: "#1689C2",
 
-          text: "#173D52",
-     },
+      text: "#173D52",
+    },
 
-     {
-          id: 3,
+    {
+      id: 3,
 
-          name: "Hydrating Cleanser",
+      name: "Hydrating Cleanser",
 
-          subtitle: "For Normal to Dry Skin",
+      subtitle: "For Normal to Dry Skin",
 
-          description:
-               "A hydrating cleanser that cleanses without disrupting the skin's natural protective barrier.",
+      description:
+        "A hydrating cleanser that cleanses without disrupting the skin's natural protective barrier.",
 
-          price: "₦20,000",
+      price: "₦20,000",
 
-          tag: "POPULAR",
+      tag: "POPULAR",
 
-          image: "/products/hydrating-cleanser.png",
+      image: "/products/hydrating-cleanser.png",
 
-          // Blue product
-          background: "#DDEBF5",
+      // Green product palette
+      background: "#EAF8E7",
 
-          accentLight: "#E6EFF5",
+      accentLight: "#F2FBEF",
 
-          circle: "#B7D5E8",
+      circle: "#B8EFAF",
 
-          accent: "#2382B8",
+      accent: "#73DD63",
 
-          text: "#16384C",
-     },
-
+      text: "#24551F",
+    },
 ];
+
 
 
 export default function Home() {
@@ -107,6 +107,9 @@ export default function Home() {
       style={{
         "--accent": activeProduct.accent,
         "--accent-light": activeProduct.accentLight,
+        "--circle": activeProduct.circle,
+        "--background": activeProduct.background,
+        "--product-text": activeProduct.text,
       }}
     >
       <Hero
@@ -115,16 +118,25 @@ export default function Home() {
         setActive={setActive}
       />
 
-      <Products />
+      <Products
+        product={activeProduct}
+      />
 
-      <About />
+      <About
+        product={activeProduct}
+      />
 
-      <Features />
+      <Features
+        product={activeProduct}
+      />
 
-      <Contact />
+      <Contact
+        product={activeProduct}
+      />
 
-      <Footer/>
-
+      <Footer
+        product={activeProduct}
+      />
     </main>
   );
 }

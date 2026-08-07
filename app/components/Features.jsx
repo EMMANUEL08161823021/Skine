@@ -96,25 +96,25 @@ const recommendations = {
   },
 };
 
-const Features = () => {
-  const [step, setStep] = useState(1);
-  const [concern, setConcern] = useState(null);
-  const [skinType, setSkinType] = useState(null);
-  const [result, setResult] = useState(null);
+const Features = ({product}) => {
+     const [step, setStep] = useState(1);
+     const [concern, setConcern] = useState(null);
+     const [skinType, setSkinType] = useState(null);
+     const [result, setResult] = useState(null);
 
-  const handleConcern = (value) => {
-    setConcern(value);
-    setStep(2);
-  };
+     const handleConcern = (value) => {
+     setConcern(value);
+     setStep(2);
+     };
 
-  const handleSkinType = (value) => {
-    setSkinType(value);
+     const handleSkinType = (value) => {
+     setSkinType(value);
 
-    const recommendation = recommendations[concern];
+     const recommendation = recommendations[concern];
 
-    setResult(recommendation);
-    setStep(3);
-  };
+     setResult(recommendation);
+     setStep(3);
+     };
 
   const resetFinder = () => {
     setStep(1);
@@ -125,8 +125,13 @@ const Features = () => {
 
   return (
     <section
-      id="skin-finder"
-      className="w-full bg-[var(--background)] px-5 py-20 md:px-10 lg:px-14"
+          style={{
+          "--accent": product?.accent || "#B5284D",
+          "--accent-light": product?.accentLight || "#F8DDE3",
+          "--product-text": product?.text || "#321720",
+          }}
+          id="skin-finder"
+          className="w-full px-5 py-20 md:px-10 lg:px-14"
     >
       <div className="mx-auto max-w-[1400px]">
 

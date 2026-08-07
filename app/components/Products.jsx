@@ -60,7 +60,7 @@ const categories = [
   "Moisturizers",
 ];
 
-const Products = () => {
+const Products = ({ product }) => {
      const [activeCategory, setActiveCategory] = useState("All Products");
 
      const filteredProducts =
@@ -71,9 +71,15 @@ const Products = () => {
           );
 
      return (
-          <section
+         <section
                id="products"
                className="w-full bg-[#F8F5EC] px-5 py-20 md:px-10 lg:px-14"
+               style={{
+               "--accent": product?.accent || "#19352A",
+               "--accent-light": product?.accentLight || "#E7EFE2",
+               "--circle": product?.circle || "#D5E2D0",
+               "--product-text": product?.text || "#19352A",
+               }}
           >
                <div className="mx-auto max-w-[1400px]">
 

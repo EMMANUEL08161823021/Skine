@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import {
@@ -24,6 +24,14 @@ import {
 
 const Hero = ({ products, active, setActive }) => {
      // const [active, setActive] = useState(0);
+
+     useEffect(() => {
+     const interval = setInterval(() => {
+          setActive((current) => (current + 1) % products.length);
+     }, 5000);
+
+     return () => clearInterval(interval);
+     }, []);
      const [activeTab, setActiveTab] = useState("HOME");
 
      const product = products[active];
@@ -385,11 +393,11 @@ const Hero = ({ products, active, setActive }) => {
 
                </div>
 
-               <div className="absolute bottom-5 left-0 z-50 w-full">
-               <div className="mx-auto flex max-w-[1500px] items-center justify-between px-6 md:px-10 lg:px-14">
+               <div className="absolute bottom-45 left-0 z-50 w-full">
+                    <div className="mx-auto flex max-w-[1500px] items-center justify-center px-6 md:px-10 lg:px-14">
 
-               {/* ================= SLIDER ================= */}
-               <div className="flex items-center gap-3">
+                    {/* ================= SLIDER ================= */}
+                    <div className="flex items-center gap-3">
 
                     {/* PREVIOUS */}
                     <button
@@ -411,14 +419,14 @@ const Hero = ({ products, active, setActive }) => {
                          className="flex items-center justify-center"
                          >
                          <span
-                         className="block h-2.5 rounded-full transition-all duration-500"
-                         style={{
+                              className="block h-2.5 rounded-full transition-all duration-500"
+                              style={{
                               width: active === index ? "30px" : "10px",
                               backgroundColor:
                               active === index
                                    ? item.accent
                                    : "#C9CEC8",
-                         }}
+                              }}
                          />
                          </button>
                     ))}
@@ -434,40 +442,40 @@ const Hero = ({ products, active, setActive }) => {
                     <ArrowRight size={17} />
                     </button>
 
-               </div>
+                    </div>
 
-               {/* ================= SOCIALS ================= */}
-               <div className="flex items-center gap-2">
+                    {/* ================= SOCIALS ================= */}
+                    {/* <div className="flex items-center gap-2">
 
-                    <SocialIcon>
-                    <FaInstagram size={16} />
-                    </SocialIcon>
+                         <SocialIcon>
+                         <FaInstagram size={16} />
+                         </SocialIcon>
 
-                    <SocialIcon>
-                    <FaFacebookF size={15} />
-                    </SocialIcon>
+                         <SocialIcon>
+                         <FaFacebookF size={15} />
+                         </SocialIcon>
 
-                    <SocialIcon>
-                    <FaYoutube size={16} />
-                    </SocialIcon>
+                         <SocialIcon>
+                         <FaYoutube size={16} />
+                         </SocialIcon>
 
-               </div>
+                    </div> */}
 
-               </div>
+                    </div>
                </div>
 
                <div
-               className="
-               pointer-events-none
-               absolute
-               -bottom-6
-               left-[-5%]
-               z-30
-               h-20
-               w-[110%]
-               rounded-[50%]
-               bg-[#F8F5EC]
-               "
+                    className="
+                    pointer-events-none
+                    absolute
+                    -bottom-6
+                    left-[-5%]
+                    z-30
+                    h-20
+                    w-[110%]
+                    rounded-[50%]
+                    bg-[#F8F5EC]
+                    "
                />
           </main>
      );
@@ -486,27 +494,27 @@ const NavLink = ({
   onClick,
   accent,
 }) => {
-  return (
-    <a
-      href={href}
-      onClick={onClick}
-      className={`
-        rounded-full px-6 py-2.5
-        text-sm font-semibold
-        transition-all duration-300
-        ${
-          active
-            ? "text-white shadow-sm"
-            : "text-[#3A302A] hover:bg-black/5"
-        }
-      `}
-      style={{
-        backgroundColor: active ? accent : "transparent",
-      }}
-    >
-      {children}
-    </a>
-  );
+     return (
+     <a
+          href={href}
+          onClick={onClick}
+          className={`
+          rounded-full px-6 py-2.5
+          text-sm font-semibold
+          transition-all duration-300
+          ${
+               active
+               ? "text-white shadow-sm"
+               : "text-[#3A302A] hover:bg-black/5"
+          }
+          `}
+          style={{
+          backgroundColor: active ? accent : "transparent",
+          }}
+     >
+          {children}
+     </a>
+     );
 };
 
 
