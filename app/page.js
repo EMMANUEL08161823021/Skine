@@ -7,6 +7,7 @@ import Products from "./components/Products";
 import About from "./components/About";
 import Features from "./components/Features";
 import Contact from "./components/Contact";
+import Footer from "./constants/Footer";
 
 
 const products = [
@@ -121,6 +122,9 @@ export default function Home() {
       <Features />
 
       <Contact />
+
+      <Footer/>
+
     </main>
   );
 }

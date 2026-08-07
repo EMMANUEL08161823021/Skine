@@ -83,7 +83,7 @@ const Hero = ({ products, active, setActive }) => {
                          </NavLink>
 
                          <NavLink
-                         href="#shop"
+                         href="#products"
                          active={activeTab === "PRODUCTS"}
                          onClick={() => setActiveTab("PRODUCTS")}
                          accent={product.accent}

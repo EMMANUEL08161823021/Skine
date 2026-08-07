@@ -26,7 +26,7 @@ const products = [
       "Cleanses and hydrates while helping restore the skin's natural protective barrier.",
     price: "₦20,000",
     rating: "5.0",
-    image: "/images/products/hydrating-cleanser.png",
+    image: "/products/teatree.jpg",
   },
 
   {
@@ -38,7 +38,7 @@ const products = [
       "Provides long-lasting hydration while helping restore and maintain the skin barrier.",
     price: "₦22,000",
     rating: "4.8",
-    image: "/images/products/moisturizing-lotion.png",
+    image: "/products/teatree.jpg",
   },
 
   {
@@ -50,7 +50,7 @@ const products = [
       "A rich yet lightweight moisturizer that keeps your skin hydrated throughout the day.",
     price: "₦24,500",
     rating: "4.9",
-    image: "/images/products/moisturizing-cream.png",
+    image: "/products/teatree.jpg",
   },
 ];
 
@@ -75,7 +75,7 @@ const Products = () => {
                id="products"
                className="w-full bg-[#F8F5EC] px-5 py-20 md:px-10 lg:px-14"
           >
-               <div className="mx-auto max-w-[1500px]">
+               <div className="mx-auto max-w-[1400px]">
 
                {/* ================= HEADER ================= */}
                <div className="text-center">
@@ -101,15 +101,15 @@ const Products = () => {
 
                     return (
                     <button
-                         key={category}
-                         onClick={() => setActiveCategory(category)}
-                         className={`rounded-full px-6 py-3 font-sans text-xs font-bold transition-all duration-300 md:text-sm ${
-                         isActive
-                              ? "bg-[#19352A] text-white shadow-md"
-                              : "bg-[#E8E4D8] text-[#19352A] hover:bg-[#DAD5C7]"
-                         }`}
+                    key={category}
+                    onClick={() => setActiveCategory(category)}
+                    className={`rounded-full px-6 py-3 font-sans text-xs font-bold transition-all duration-500 md:text-sm ${
+                    isActive
+                         ? "bg-[var(--accent)] text-white shadow-md"
+                         : "bg-[#E8E4D8] text-[#19352A] hover:bg-[var(--accent)]/10 hover:text-[var(--accent)]"
+                    }`}
                     >
-                         {category}
+                    {category}
                     </button>
                     );
                     })}
@@ -139,7 +139,6 @@ const Products = () => {
                          {/* IMAGE CONTAINER */}
                          <div
                               className="
-                              border border-black
                                    relative
                                    flex
                                    h-[330px]
@@ -171,16 +170,7 @@ const Products = () => {
 
 
                          {/* Product Image */}
-                         {/* <div className="relative h-[290px] w-[230px] border border-black transition-transform duration-500 group-hover:scale-105">
 
-                              <Image
-                              src={product.image}
-                              alt={product.name}
-                              fill
-                              className="object-contain drop-shadow-[0_20px_20px_rgba(25,53,42,0.15)]"
-                              />
-
-                         </div> */}
                          <div className="relative h-full w-full">
                               <Image
                               src={product.image}

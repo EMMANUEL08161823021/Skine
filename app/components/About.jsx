@@ -41,7 +41,7 @@ const About = () => {
    
       className="w-full bg-[var(--accent)] transition-colors px-5 py-24 text-white md:px-10 lg:px-14"
     >
-      <div className="mx-auto flex min-h-screen max-w-[1500px] flex-col">
+      <div className="mx-auto flex min-h-screen max-w-[1400px] flex-col">
 
         {/* HEADER */}
         <div className="text-center">
