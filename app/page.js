@@ -1,9 +1,17 @@
+import About from "./components/About";
+import Contact from "./components/Contact";
+import Features from "./components/Features";
+import Hero from "./components/Hero";
+import Products from "./components/Products";
 
 export default function Home() {
   return (
-    <div>
-      Hello World
-      <p className="border border-white text-center text-red-500 bg-red">This is NextJs</p>
-    </div>
+    <main>
+      <Hero/>
+      <Products/>
+      <About/>
+      <Features/>
+      <Contact/>
+    </main>
   );
 }
