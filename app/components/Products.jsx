@@ -14,7 +14,7 @@ const products = [
       "Gently cleanses and removes excess oil without disrupting the skin barrier.",
     price: "₦18,500",
     rating: "4.9",
-    image: "/images/products/foaming-cleanser.png",
+    image: "/products/teatree.jpg",
   },
 
   {
@@ -61,155 +61,208 @@ const categories = [
 ];
 
 const Products = () => {
-  const [activeCategory, setActiveCategory] = useState("All Products");
+     const [activeCategory, setActiveCategory] = useState("All Products");
 
-  const filteredProducts =
-    activeCategory === "All Products"
-      ? products
-      : products.filter(
-          (product) => product.category === activeCategory
-        );
+     const filteredProducts =
+     activeCategory === "All Products"
+          ? products
+          : products.filter(
+               (product) => product.category === activeCategory
+          );
 
-  return (
-    <section
-      id="products"
-      className="w-full bg-[#F8F5EC] px-5 py-20 md:px-10 lg:px-14"
-    >
-      <div className="mx-auto max-w-[1500px]">
+     return (
+          <section
+               id="products"
+               className="w-full bg-[#F8F5EC] px-5 py-20 md:px-10 lg:px-14"
+          >
+               <div className="mx-auto max-w-[1500px]">
 
-        {/* ================= HEADER ================= */}
-        <div className="text-center">
+               {/* ================= HEADER ================= */}
+               <div className="text-center">
 
-          <h2 className="font-heading text-5xl font-bold leading-[0.9] tracking-[-0.04em] text-[#19352A] md:text-6xl lg:text-7xl">
-            OUR SKINCARE
-            <br />
-            ESSENTIALS
-          </h2>
+                    <h2 className="font-heading text-[var(--accent)] text-5xl font-bold leading-[0.9] tracking-[-0.04em] md:text-6xl lg:text-7xl">
+                    OUR SKINCARE
+                    <br />
+                    ESSENTIALS
+                    </h2>
 
-          <p className="mx-auto mt-6 max-w-2xl font-sans text-sm font-medium leading-6 text-[#536B5A] md:text-base">
-            Dermatologist-developed skincare made to cleanse,
-            hydrate, and help your skin maintain its natural barrier.
-          </p>
+                    <p className="mx-auto mt-6 max-w-2xl font-sans text-sm font-medium leading-6 text-[#536B5A] md:text-base">
+                    Dermatologist-developed skincare made to cleanse,
+                    hydrate, and help your skin maintain its natural barrier.
+                    </p>
 
-        </div>
+               </div>
 
-        {/* ================= CATEGORY FILTER ================= */}
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+               {/* ================= CATEGORY FILTER ================= */}
+               <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
 
-          {categories.map((category) => {
-            const isActive = activeCategory === category;
+                    {categories.map((category) => {
+                    const isActive = activeCategory === category;
 
-            return (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`rounded-full px-6 py-3 font-sans text-xs font-bold transition-all duration-300 md:text-sm ${
-                  isActive
-                    ? "bg-[#19352A] text-white shadow-md"
-                    : "bg-[#E8E4D8] text-[#19352A] hover:bg-[#DAD5C7]"
-                }`}
-              >
-                {category}
-              </button>
-            );
-          })}
+                    return (
+                    <button
+                         key={category}
+                         onClick={() => setActiveCategory(category)}
+                         className={`rounded-full px-6 py-3 font-sans text-xs font-bold transition-all duration-300 md:text-sm ${
+                         isActive
+                              ? "bg-[#19352A] text-white shadow-md"
+                              : "bg-[#E8E4D8] text-[#19352A] hover:bg-[#DAD5C7]"
+                         }`}
+                    >
+                         {category}
+                    </button>
+                    );
+                    })}
 
-        </div>
+               </div>
 
-        {/* ================= PRODUCTS ================= */}
-        <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+               {/* ================= PRODUCTS ================= */}
+               <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
 
-          {filteredProducts.map((product) => (
+                    {filteredProducts.map((product) => (
 
-            <article
-              key={product.id}
-              className="group rounded-[28px] border border-[#19352A]/10 bg-white p-4 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
-            >
+                    <article
+                         key={product.id}
+                         className="
+                         group
+                         rounded-[28px]
+                         border border-[var(--accent)]/10
+                         bg-white
+                         p-4
+                         transition-all
+                         duration-500
+                         hover:-translate-y-2
+                         hover:shadow-xl
+                         "
+                    >
 
-              {/* IMAGE CONTAINER */}
-              <div className="relative flex h-[330px] items-center justify-center overflow-hidden rounded-[22px] bg-[#E7EFE2]">
+                         {/* IMAGE CONTAINER */}
+                         <div
+                              className="
+                              border border-black
+                                   relative
+                                   flex
+                                   h-[330px]
+                                   items-center
+                                   justify-center
+                                   overflow-hidden
+                                   rounded-[22px]
+                                   bg-[var(--accentLight)]
+                                   transition-colors
+                                   duration-500
+                              "
+                         >
+                    
 
-                {/* Rating */}
-                <div className="absolute right-3 top-3 z-20 flex items-center gap-1 rounded-full bg-white px-3 py-2 shadow-sm">
+                         {/* Rating */}
+                         <div className="absolute right-3 top-3 z-20 flex items-center gap-1 rounded-full bg-white px-3 py-2 shadow-sm">
 
-                  <span className="font-sans text-xs font-bold text-[#19352A]">
-                    {product.rating}
-                  </span>
+                              <span className="font-sans text-xs font-bold text-[var(--accent)] transition-colors duration-500">
+                              {product.rating}
+                              </span>
 
-                  <Star
-                    size={12}
-                    fill="currentColor"
-                    className="text-[#19352A]"
-                  />
+                              <Star
+                              size={12}
+                              fill="currentColor"
+                              className="text-[var(--accent)] transition-colors duration-500"
+                              />
 
-                </div>
+                         </div>
 
-                {/* Product Image */}
-                <div className="relative h-[290px] w-[230px] transition-transform duration-500 group-hover:scale-105">
 
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    className="object-contain drop-shadow-[0_20px_20px_rgba(25,53,42,0.15)]"
-                  />
+                         {/* Product Image */}
+                         {/* <div className="relative h-[290px] w-[230px] border border-black transition-transform duration-500 group-hover:scale-105">
 
-                </div>
+                              <Image
+                              src={product.image}
+                              alt={product.name}
+                              fill
+                              className="object-contain drop-shadow-[0_20px_20px_rgba(25,53,42,0.15)]"
+                              />
 
-              </div>
+                         </div> */}
+                         <div className="relative h-full w-full">
+                              <Image
+                              src={product.image}
+                              alt={product.name}
+                              fill
+                              className="object-contain "
+                              />
+                         </div>
 
-              {/* PRODUCT DETAILS */}
-              <div className="px-1 pb-1 pt-5">
+                         </div>
 
-                {/* Category */}
-                <p className="font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-[#718D67]">
-                  {product.category}
-                </p>
 
-                {/* Name */}
-                <h3 className="mt-2 font-heading text-2xl font-semibold leading-none text-[#19352A]">
-                  {product.name}
-                </h3>
+                         {/* PRODUCT DETAILS */}
+                         <div className="px-1 pb-1 pt-5">
 
-                {/* Skin Type */}
-                <p className="mt-2 font-sans text-xs font-bold text-[#536B5A]">
-                  {product.skinType}
-                </p>
+                         {/* Category */}
+                         <p className="font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--accent)] transition-colors duration-500">
+                              {product.category}
+                         </p>
 
-                {/* Description */}
-                <p className="mt-3 min-h-[48px] font-sans text-sm leading-5 text-[#657267]">
-                  {product.description}
-                </p>
 
-                {/* Bottom */}
-                <div className="mt-6 flex items-center justify-between">
+                         {/* Name */}
+                         <h3 className="mt-2 font-heading text-2xl font-semibold leading-none text-[#19352A]">
+                              {product.name}
+                         </h3>
 
-                  {/* Price */}
-                  <span className="font-heading text-2xl font-bold text-[#19352A]">
-                    {product.price}
-                  </span>
 
-                  {/* Add button */}
-                  <button
-                    aria-label={`Add ${product.name} to cart`}
-                    className="flex h-11 w-11 items-center justify-center rounded-full bg-[#19352A] text-white shadow-md transition-all duration-300 hover:scale-110 hover:bg-[#718D67]"
-                  >
-                    <Plus size={20} />
-                  </button>
+                         {/* Skin Type */}
+                         <p className="mt-2 font-sans text-xs font-bold text-[#536B5A]">
+                              {product.skinType}
+                         </p>
 
-                </div>
 
-              </div>
+                         {/* Description */}
+                         <p className="mt-3 min-h-[48px] font-sans text-sm leading-5 text-[#657267]">
+                              {product.description}
+                         </p>
 
-            </article>
 
-          ))}
+                         {/* Bottom */}
+                         <div className="mt-6 flex items-center justify-between">
 
-        </div>
+                              {/* Price */}
+                              <span className="font-heading text-2xl font-bold text-[var(--accent)] transition-colors duration-500">
+                              {product.price}
+                              </span>
 
-      </div>
-    </section>
-  );
+
+                              {/* Add button */}
+                              <button
+                              aria-label={`Add ${product.name} to cart`}
+                              className="
+                              flex
+                              h-11
+                              w-11
+                              items-center
+                              justify-center
+                              rounded-full
+                              bg-[var(--accent)]
+                              text-white
+                              shadow-md
+                              transition-all
+                              duration-500
+                              hover:scale-110
+                              "
+                              >
+                              <Plus size={20} />
+                              </button>
+
+                         </div>
+
+                         </div>
+
+                    </article>
+
+                    ))}
+
+               </div>
+
+               </div>
+          </section>
+     );
 };
 
 export default Products;
