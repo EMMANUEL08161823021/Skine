@@ -102,6 +102,7 @@ const products = [
 
 export default function Hero() {
      const [active, setActive] = useState(0);
+     const [activeTab, setActiveTab] = useState("HOME");
 
      const product = products[active];
 
@@ -150,27 +151,50 @@ export default function Hero() {
                {/* DESKTOP NAV */}
 
                <div className="hidden items-center rounded-full bg-white p-1.5 shadow-sm md:flex">
+                    <NavLink
+                    href="/"
+                    active={activeTab === "HOME"}
+                    onClick={() => setActiveTab("HOME")}
+                    accent={product.accent}
+                    >
+                    HOME
+                    </NavLink>
 
-               <NavLink href="/" active>
-               HOME
-               </NavLink>
+                    <NavLink
+                    href="#shop"
+                    active={activeTab === "PRODUCTS"}
+                    onClick={() => setActiveTab("PRODUCTS")}
+                    accent={product.accent}
+                    >
+                    PRODUCTS
+                    </NavLink>
 
-               <NavLink href="#shop">
-               PRODUCTS
-               </NavLink>
+                    <NavLink
+                    href="#about"
+                    active={activeTab === "ABOUT"}
+                    onClick={() => setActiveTab("ABOUT")}
+                    accent={product.accent}
+                    >
+                    ABOUT
+                    </NavLink>
 
-               <NavLink href="#about">
-               ABOUT
-               </NavLink>
+                    <NavLink
+                    href="#skin-finder"
+                    active={activeTab === "FEATURES"}
+                    onClick={() => setActiveTab("FEATURES")}
+                    accent={product.accent}
+                    >
+                    FEATURES
+                    </NavLink>
 
-               <NavLink href="#skin-finder">
-               FEATURES
-               </NavLink>
-
-               <NavLink href="#contact">
-               CONTACT
-               </NavLink>
-
+                    <NavLink
+                    href="#contact"
+                    active={activeTab === "CONTACT"}
+                    onClick={() => setActiveTab("CONTACT")}
+                    accent={product.accent}
+                    >
+                    CONTACT
+                    </NavLink>
                </div>
 
 
@@ -542,21 +566,35 @@ export default function Hero() {
    NAV LINK
 ========================================= */
 
-function NavLink({ href, children, active = false }) {
-
+const NavLink = ({
+  href,
+  children,
+  active,
+  onClick,
+  accent,
+}) => {
   return (
-    <Link
+    <a
       href={href}
-      className={`rounded-full px-6 py-3 text-xs font-bold tracking-wide transition ${
-        active
-          ? "bg-[#19352A] text-white"
-          : "text-[#19352A] hover:bg-[#EDF1EB]"
-      }`}
+      onClick={onClick}
+      className={`
+        rounded-full px-6 py-2.5
+        text-sm font-semibold
+        transition-all duration-300
+        ${
+          active
+            ? "text-white shadow-sm"
+            : "text-[#3A302A] hover:bg-black/5"
+        }
+      `}
+      style={{
+        backgroundColor: active ? accent : "transparent",
+      }}
     >
       {children}
-    </Link>
+    </a>
   );
-}
+};
 
 
 
