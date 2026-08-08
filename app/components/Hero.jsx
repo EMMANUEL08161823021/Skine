@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+
 import {
   ArrowLeft,
   ArrowRight,
@@ -12,12 +13,11 @@ import {
   ShoppingBag,
 } from "lucide-react";
 
-import {
-  FaInstagram,
-  FaFacebookF,
-  FaYoutube,
-} from "react-icons/fa";
-
+// import {
+//   FaInstagram,
+//   FaFacebookF,
+//   FaYoutube,
+// } from "react-icons/fa";
 
 
 
@@ -28,7 +28,7 @@ const Hero = ({ products, active, setActive }) => {
      useEffect(() => {
      const interval = setInterval(() => {
           setActive((current) => (current + 1) % products.length);
-     }, 5000);
+     }, 7000);
 
      return () => clearInterval(interval);
      }, []);

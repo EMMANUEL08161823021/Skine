@@ -85,13 +85,13 @@ const About = ({ product }) => {
                 <span
                   className="
                     absolute
-                    -top-8
+                    -top-4
                     left-0
                     font-heading
                     text-7xl
                     font-bold
                     leading-none
-                    text-[var(--accent)]
+                    text-[var(--accentLight)]
                     opacity-10
                     transition-colors
                     duration-500
@@ -190,13 +190,13 @@ const About = ({ product }) => {
                 <span
                   className="
                     absolute
-                    -top-8
+                    -top-4
                     left-0
                     font-heading
                     text-7xl
                     font-bold
                     leading-none
-                    text-[var(--accent)]
+                    text-[var(--accentLight)]
                     opacity-10
                     transition-colors
                     duration-500
