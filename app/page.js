@@ -13,7 +13,6 @@ import { products } from "./data/products";
 
 
 
-
 export default function Home() {
   const [active, setActive] = useState(0);
 

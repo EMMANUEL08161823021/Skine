@@ -133,7 +133,7 @@ const Hero = ({ products, active, setActive }) => {
                     <div className="flex items-center gap-2">
 
                          <Link
-                         href="/routine"
+                         href="#skin-finder"
                          className="flex h-11 w-11 items-center justify-center rounded-full bg-white transition hover:scale-105"
                          >
                          <Sparkles size={19} />
@@ -141,7 +141,7 @@ const Hero = ({ products, active, setActive }) => {
 
 
                          <Link
-                         href="/cart"
+                         href="#"
                          className="relative flex h-11 w-11 items-center justify-center rounded-full bg-white transition hover:scale-105"
                          >
 

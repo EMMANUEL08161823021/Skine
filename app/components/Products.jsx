@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Plus, Star } from "lucide-react";
+import ProductSkeleton from "./ProductSkeleton";
 
 const products = [
   {
@@ -43,14 +44,47 @@ const products = [
 
   {
     id: 4,
-    name: "Daily Moisturizing Cream",
+    name: "Anua Cream",
     category: "Moisturizers",
     skinType: "Normal to Dry Skin",
     description:
       "A rich yet lightweight moisturizer that keeps your skin hydrated throughout the day.",
     price: "₦24,500",
     rating: "4.9",
-    image: "/products/teatree.jpg",
+    image: "/products/anua.jpg",
+  },
+  {
+    id: 5,
+    name: "Simple Facial Wash",
+    category: "Moisturizers",
+    skinType: "Normal to Dry Skin",
+    description:
+      "A rich yet lightweight moisturizer that keeps your skin hydrated throughout the day.",
+    price: "₦24,500",
+    rating: "4.9",
+    image: "/products/simple-facial-wash.jpg",
+  },
+  {
+    id: 6,
+    name: "Simple Moisturizing Cream",
+    category: "Moisturizers",
+    skinType: "Normal to Dry Skin",
+    description:
+      "A rich yet lightweight moisturizer that keeps your skin hydrated throughout the day.",
+    price: "₦24,500",
+    rating: "4.9",
+    image: "/products/simple-moisturiser.jpg",
+  },
+  {
+    id: 7,
+    name: "Arencia",
+    category: "Cleansers",
+    skinType: "Normal to Dry Skin",
+    description:
+      "A rich yet lightweight moisturizer that keeps your skin hydrated throughout the day.",
+    price: "₦24,500",
+    rating: "4.9",
+    image: "/products/arencia.jpg",
   },
 ];
 
@@ -62,6 +96,28 @@ const categories = [
 
 const Products = ({ product }) => {
      const [activeCategory, setActiveCategory] = useState("All Products");
+     const [loading, setLoading] = useState(true);
+
+
+     useEffect(() => {
+          const fetchProducts = async () => {
+          try {
+               setLoading(true);
+
+               const response = await fetch("/api/products");
+
+               const data = await response.json();
+
+               setProducts(data.products);
+          } catch (error) {
+               console.error("Failed to fetch products:", error);
+          } finally {
+               setLoading(false);
+          }
+          };
+
+          fetchProducts();
+     }, []);
 
      const filteredProducts =
      activeCategory === "All Products"
@@ -125,134 +181,128 @@ const Products = ({ product }) => {
                {/* ================= PRODUCTS ================= */}
                <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
 
-                    {filteredProducts.map((product) => (
+                    {loading ? (
+                    Array.from({ length: 4 }).map((_, index) => (
+                         <ProductSkeleton key={index} />
+                    ))
+                    ) : (
+                    filteredProducts.map((product) => (
+                         <article
+                              key={product.id}
+                              className="group rounded-[28px] border border-[#19352A]/10 bg-white p-4 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+                              >
 
-                    <article
-                         key={product.id}
-                         className="
-                         group
-                         rounded-[28px]
-                         border border-[var(--accent)]/10
-                         bg-white
-                         p-4
-                         transition-all
-                         duration-500
-                         hover:-translate-y-2
-                         hover:shadow-xl
-                         "
-                    >
+                              {/* IMAGE CONTAINER */}
+                              <div
+                                   className="
+                                        relative
+                                        flex
+                                        h-[330px]
+                                        items-center
+                                        justify-center
+                                        overflow-hidden
+                                        rounded-[22px]
+                                        bg-[var(--accentLight)]
+                                        transition-colors
+                                        duration-500
+                                   "
+                              >
+                         
 
-                         {/* IMAGE CONTAINER */}
-                         <div
-                              className="
-                                   relative
+                              {/* Rating */}
+                              <div className="absolute right-3 top-3 z-20 flex items-center gap-1 rounded-full bg-white px-3 py-2 shadow-sm">
+
+                                   <span className="font-sans text-xs font-bold text-[var(--accent)] transition-colors duration-500">
+                                   {product.rating}
+                                   </span>
+
+                                   <Star
+                                   size={12}
+                                   fill="currentColor"
+                                   className="text-[var(--accent)] transition-colors duration-500"
+                                   />
+
+                              </div>
+
+
+                              {/* Product Image */}
+
+                              <div className="relative h-full w-full">
+                                   <Image
+                                   src={product.image}
+                                   alt={product.name}
+                                   fill
+                                   className="object-contain "
+                                   />
+                              </div>
+
+                              </div>
+
+
+                              {/* PRODUCT DETAILS */}
+                              <div className="px-1 pb-1 pt-5">
+
+                              {/* Category */}
+                              <p className="font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--accent)] transition-colors duration-500">
+                                   {product.category}
+                              </p>
+
+
+                              {/* Name */}
+                              <h3 className="mt-2 font-heading text-2xl font-semibold leading-none text-[#19352A]">
+                                   {product.name}
+                              </h3>
+
+
+                              {/* Skin Type */}
+                              <p className="mt-2 font-sans text-xs font-bold text-[#536B5A]">
+                                   {product.skinType}
+                              </p>
+
+
+                              {/* Description */}
+                              <p className="mt-3 min-h-[48px] font-sans text-sm leading-5 text-[#657267]">
+                                   {product.description}
+                              </p>
+
+
+                              {/* Bottom */}
+                              <div className="mt-6 flex items-center justify-between">
+
+                                   {/* Price */}
+                                   <span className="font-heading text-2xl font-bold text-[var(--accent)] transition-colors duration-500">
+                                   {product.price}
+                                   </span>
+
+
+                                   {/* Add button */}
+                                   <button
+                                   aria-label={`Add ${product.name} to cart`}
+                                   className="
                                    flex
-                                   h-[330px]
+                                   h-11
+                                   w-11
                                    items-center
                                    justify-center
-                                   overflow-hidden
-                                   rounded-[22px]
-                                   bg-[var(--accentLight)]
-                                   transition-colors
+                                   rounded-full
+                                   bg-[var(--accent)]
+                                   text-white
+                                   shadow-md
+                                   transition-all
                                    duration-500
-                              "
-                         >
-                    
+                                   hover:scale-110
+                                   "
+                                   >
+                                   <Plus size={20} />
+                                   </button>
 
-                         {/* Rating */}
-                         <div className="absolute right-3 top-3 z-20 flex items-center gap-1 rounded-full bg-white px-3 py-2 shadow-sm">
+                              </div>
 
-                              <span className="font-sans text-xs font-bold text-[var(--accent)] transition-colors duration-500">
-                              {product.rating}
-                              </span>
+                              </div>
 
-                              <Star
-                              size={12}
-                              fill="currentColor"
-                              className="text-[var(--accent)] transition-colors duration-500"
-                              />
+                         </article>
 
-                         </div>
-
-
-                         {/* Product Image */}
-
-                         <div className="relative h-full w-full">
-                              <Image
-                              src={product.image}
-                              alt={product.name}
-                              fill
-                              className="object-contain "
-                              />
-                         </div>
-
-                         </div>
-
-
-                         {/* PRODUCT DETAILS */}
-                         <div className="px-1 pb-1 pt-5">
-
-                         {/* Category */}
-                         <p className="font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--accent)] transition-colors duration-500">
-                              {product.category}
-                         </p>
-
-
-                         {/* Name */}
-                         <h3 className="mt-2 font-heading text-2xl font-semibold leading-none text-[#19352A]">
-                              {product.name}
-                         </h3>
-
-
-                         {/* Skin Type */}
-                         <p className="mt-2 font-sans text-xs font-bold text-[#536B5A]">
-                              {product.skinType}
-                         </p>
-
-
-                         {/* Description */}
-                         <p className="mt-3 min-h-[48px] font-sans text-sm leading-5 text-[#657267]">
-                              {product.description}
-                         </p>
-
-
-                         {/* Bottom */}
-                         <div className="mt-6 flex items-center justify-between">
-
-                              {/* Price */}
-                              <span className="font-heading text-2xl font-bold text-[var(--accent)] transition-colors duration-500">
-                              {product.price}
-                              </span>
-
-
-                              {/* Add button */}
-                              <button
-                              aria-label={`Add ${product.name} to cart`}
-                              className="
-                              flex
-                              h-11
-                              w-11
-                              items-center
-                              justify-center
-                              rounded-full
-                              bg-[var(--accent)]
-                              text-white
-                              shadow-md
-                              transition-all
-                              duration-500
-                              hover:scale-110
-                              "
-                              >
-                              <Plus size={20} />
-                              </button>
-
-                         </div>
-
-                         </div>
-
-                    </article>
-
-                    ))}
+                    )))}
 
                </div>
 
